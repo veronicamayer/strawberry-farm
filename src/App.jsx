@@ -11,7 +11,7 @@ function App() {
     }, []);
 
     const fetchData = () => {
-        fetch("http://localhost:1818/")
+        fetch("https://strawberry-farm-backend.onrender.com")
             .then((response) => response.json())
             .then((data) => {
                 setMaxCapacity(data.maxCapacity);

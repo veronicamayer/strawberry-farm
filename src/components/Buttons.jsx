@@ -10,7 +10,7 @@ function Buttons(props) {
     }, []);
 
     const fetchUtilization = () => {
-        fetch("http://localhost:1818/")
+        fetch("https://strawberry-farm-backend.onrender.com")
             .then((response) => response.json())
             .then((data) => {
                 onUtilizationChange(data.utilization);
@@ -25,7 +25,10 @@ function Buttons(props) {
 
     const updateUtilization = (increment) => {
         axios
-            .post("http://localhost:1818/update-utilization", { increment })
+            .post(
+                "https://strawberry-farm-backend.onrender.com/update-utilization",
+                { increment }
+            )
             .then((response) => {
                 console.log(response.data);
                 onUtilizationChange(response.data.utilization);
