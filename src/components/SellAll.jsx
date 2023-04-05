@@ -10,7 +10,7 @@ function Buttons(props) {
     }, []);
 
     const fetchUtilization = () => {
-        fetch("http://localhost:1818/")
+        fetch("https://strawberry-farm-backend.onrender.com")
             .then((response) => response.json())
             .then((data) => {
                 onUtilizationChange(data.utilization);
@@ -24,7 +24,9 @@ function Buttons(props) {
     };
     const updateRevenue = () => {
         axios
-            .post("http://localhost:1818/sell-all", { utilization })
+            .post("https://strawberry-farm-backend.onrender.com/sell-all", {
+                utilization,
+            })
             .then((response) => {
                 console.log(response.data);
                 setRevenue(response.data.revenue); // update the revenue in the state

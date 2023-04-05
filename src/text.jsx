@@ -16,7 +16,7 @@ function App() {
     }, []);
 
     const fetchData = () => {
-        fetch("http://localhost:1818/")
+        fetch("https://strawberry-farm-backend.onrender.com")
             .then((response) => response.json())
             .then((data) => {
                 setUtilization(data.utilization);
@@ -30,7 +30,10 @@ function App() {
 
     const updateUtilization = (increment) => {
         axios
-            .post("http://localhost:1818/update-utilization", { increment })
+            .post(
+                "https://strawberry-farm-backend.onrender.com/update-utilization",
+                { increment }
+            )
             .then((response) => {
                 console.log(response.data);
                 setUtilization(response.data.utilization);
@@ -43,7 +46,9 @@ function App() {
 
     const updateRevenue = () => {
         axios
-            .post("http://localhost:1818/sell-all", { utilization })
+            .post("https://strawberry-farm-backend.onrender.com/sell-all", {
+                utilization,
+            })
             .then((response) => {
                 console.log(response.data);
                 setRevenue(response.data.revenue); // update the revenue in the state
@@ -56,7 +61,7 @@ function App() {
 
     const resetRevenue = () => {
         axios
-            .post("http://localhost:1818/reset-revenue")
+            .post("https://strawberry-farm-backend.onrender.com/reset-revenue")
             .then((response) => {
                 console.log(response.data);
                 setRevenue(response.data.revenue); // update the revenue in the state
