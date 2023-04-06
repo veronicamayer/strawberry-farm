@@ -1,0 +1,22 @@
+#pony {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1ecd1;
+    border: none;
+    height: 25%;
+    align-self: flex-end;
+    border-radius: 20px;
+    grid-column: 1/3;
+    grid-row: 2/3;
+
+    img {
+        height: 100%;
+        width: 15%;
+        object-fit: contain;
+    }
+
+    p {
+        background-color: #f1ecd1;
+    }
+}

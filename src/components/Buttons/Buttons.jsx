@@ -1,6 +1,6 @@
-import axios from "axios";
-import Strawberry from "../assets/img/strawberry.png";
+import Strawberry from "../../assets/img/strawberry.png";
 import React, { useEffect } from "react";
+import "./Buttons.scss";
 
 function Buttons(props) {
     const { maxCapacity, utilization, onUtilizationChange } = props;
@@ -9,34 +9,40 @@ function Buttons(props) {
         fetchUtilization();
     }, []);
 
-    const fetchUtilization = () => {
-        fetch("https://strawberry-farm-backend.onrender.com")
-            .then((response) => response.json())
-            .then((data) => {
-                onUtilizationChange(data.utilization);
-                console.log(
-                    "Utilization fetch in Buttons " + data.utilization + " "
-                );
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    const fetchUtilization = async () => {
+        try {
+            const response = await fetch(
+                "https://strawberry-farm-backend.onrender.com"
+            );
+            const data = await response.json();
+            onUtilizationChange(data.utilization);
+            console.log(
+                "Utilization fetch in Buttons " + data.utilization + " "
+            );
+        } catch (error) {
+            console.log(error);
+        }
     };
 
-    const updateUtilization = (increment) => {
-        axios
-            .post(
+    const updateUtilization = async (increment) => {
+        try {
+            const response = await fetch(
                 "https://strawberry-farm-backend.onrender.com/update-utilization",
-                { increment }
-            )
-            .then((response) => {
-                console.log(response.data);
-                onUtilizationChange(response.data.utilization);
-                fetchUtilization();
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+                {
+                    method: "POST",
+                    body: JSON.stringify({ increment }),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            const data = await response.json();
+            console.log(data);
+            onUtilizationChange(data.utilization);
+            fetchUtilization();
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const buttonDisabled1 = utilization >= maxCapacity;

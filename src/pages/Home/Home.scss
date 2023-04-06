@@ -1,0 +1,52 @@
+h1 {
+    padding-left: 5vw;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    font-family: Arial, Helvetica, sans-serif;
+    color: darkred;
+}
+
+#dashboard {
+    padding: 5vh 5vw;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 50% 50%;
+
+    #counter p {
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        color: darkred;
+    }
+
+    #storage {
+        #maxCapacity {
+            background-color: rgb(240, 240, 240);
+            box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+            width: 70%;
+            margin: auto;
+            position: relative;
+        }
+
+        #utilization {
+            background-image: url(../../assets/img/capacity.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            align-self: flex-end;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    }
+}
+
+img {
+    height: 80vh;
+    width: 100%;
+    object-fit: cover;
+    grid-column: 2/3;
+    grid-row: 1/4;
+    justify-self: flex-end;
+    border-radius: 0 20px 20px 0;
+}
